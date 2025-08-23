@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سوق حسو - الطاقة الشمسية</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #4caf50, #ffeb3b);
+      color: #222;
+    }
+
+    header {
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+      position: relative;
+    }
+
+    .watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      font-size: 40px;
+      color: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      animation: float 6s infinite alternate ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -55%) rotate(10deg); }
+    }
+
+    main {
+      padding: 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .product h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #2e7d32;
+    }
+
+    .product p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    button {
+      background: #388e3c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2e7d32;
+    }
+
+    footer {
+      background: rgba(0,0,0,0.7);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .cart {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🌞 سوق حسو للطاقة الشمسية
+  </header>
+
+  <div class="watermark">Hassou Solar Market</div>
+
+  <main>
+    <section class="product">
+      <h2>لوح طاقة شمسية</h2>
+      <p>الثمن: 600 درهم</p>
+      <button onclick="addToCart('لوح طاقة شمسية', 600)">🛒 أضف للسلة</button>
+    </section>
+
+    <section class="product">
+      <h2>كشاف شمسي</h2>
+      <p>الثمن: 700 درهم</p>
+      <button onclick="addToCart('كشاف شمسي', 700)">🛒 أضف للسلة</button>
+    </section>
+
+    <section class="product">
+      <h2>عصر</h2>
+      <p>الثمن: 189 درهم</p>
+      <button onclick="addToCart('عصر', 189)">🛒 أضف للسلة</button>
+    </section>
+
+    <div class="cart">
+      <h3>🛍️ سلة المشتريات</h3>
+      <ul id="cart-items"></ul>
+      <p><strong>الإجمالي: </strong><span id="total">0</span> درهم</p>
+      <button onclick="checkout()">✅ اطلب الآن</button>
+    </div>
+  </main>
+
+  <footer>
+    📌 سياسة الاستخدام | 📞 دعم فني: 0607072825 | ✉️ ahmedroor014@gmail.com
+    <br> &copy; تصميم بواسطة Hassou
+  </footer>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({name, price});
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-items');
+      cartList.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - ${item.price} درهم`;
+        cartList.appendChild(li);
+      });
+      document.getElementById('total').textContent = total;
+    }
+
+    function checkout() {
+      alert("✅ شكراً لك! سيتم التواصل معك عبر الرقم: 0607072825");
+    }
+  </script>
+
+</body>
+</html>
